@@ -6,6 +6,9 @@ import {
 } from "react-router-dom";
 import Home from './Components/Home/Home/Home';
 import AllProducts from './Components/Pages/AllProducts/AllProducts';
+import Login from './Components/Authentication/Login/Login';
+import Register from './Components/Authentication/Register/Register';
+import NotFound from './Components/Pages/NotFound/NotFound';
 
 function App() {
   return (
@@ -20,6 +23,15 @@ function App() {
             </Route>
             <Route path="/products">
               <AllProducts></AllProducts>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            <Route path="/register">
+              <Register></Register>
+            </Route>
+            <Route path="*">
+              <NotFound></NotFound>
             </Route>
           </Switch>
       </Router>

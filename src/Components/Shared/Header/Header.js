@@ -3,10 +3,11 @@ import './Header.css';
 import logo from '../../../images/logo-default-286x60.png';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import useFirebase from '../../hooks/useFirebase';
 
 const Header = () => {
 
-    
+    const { user, logOut } = useFirebase();
 
     return (
         <Navbar className="px-md-5" bg="light" variant="light" expand="lg">
@@ -19,9 +20,17 @@ const Header = () => {
                 <Nav.Link className="text-orange" as={Link} to="/about">About</Nav.Link>
                 <Nav.Link className="text-orange" as={Link} to="/contact">Contact</Nav.Link>
 
+                {
+                    user.email ? (
+                        <button className="btn btn-danger" onClick={logOut}>Logout</button>
+                    ) : (
+                        <>
+                            <Nav.Link as={Link}  className="btn btn-danger text-white fw-bold" to="/login">Login</Nav.Link>
+                            <Nav.Link as={Link}  className="btn btn-primary text-white fw-bold ms-md-2" to="/register">Register</Nav.Link>
+                        </>
+                    )
+                }
                 
-                <Nav.Link as={Link}  className="btn btn-warning text-white fw-bold" to="/login">Login</Nav.Link>
-                <Nav.Link as={Link}  className="btn btn-primary text-white fw-bold ms-md-2" to="/register">Register</Nav.Link>
 
             
                 
