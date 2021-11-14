@@ -9,7 +9,7 @@ import AllProducts from './Components/Pages/AllProducts/AllProducts';
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Router>
           <Switch>
             <Route exact path="/">

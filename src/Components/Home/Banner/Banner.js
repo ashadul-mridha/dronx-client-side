@@ -12,7 +12,7 @@ const Banner = () => {
                 <div className="col-sm-12 col-md-6 pe-5">
                     <h1>iStep Inspire 1 Pro</h1>
                     <p>Inspire 1 Pro by iStep is a precision-engineered drone which is specifically designed for easy flying, making it perfect to fly inside or to record action shots whilst on the move. Its foldable structure makes it an essential item for any adventure!</p>
-                    <div className="ms-3">
+                    <div className="ms-3 text-center">
                         <button className="btn-regular"> Buy Now </button>
                         <button className="btn-regular"> Learn More </button>
                     </div>
