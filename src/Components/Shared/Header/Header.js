@@ -3,11 +3,11 @@ import './Header.css';
 import logo from '../../../images/logo-default-286x60.png';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import useFirebase from '../../hooks/useFirebase';
+import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
 
-    const { user, logOut } = useFirebase();
+    const { user, logOut } = useAuth();
 
     return (
         <Navbar className="px-md-5" bg="light" variant="light" expand="lg">

@@ -4,12 +4,11 @@ import droneImg from '../../../images/prod-3.jpg';
 import Header from '../../Shared/Header/Header';
 import Footer from '../../Shared/Footer/Footer';
 import { Link } from 'react-router-dom';
-import useFirebase from '../../hooks/useFirebase';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
 
-    const {loginWithEmail} = useFirebase();
-
+    const {loginWithEmail} = useAuth();
     //get form value
     const [email , setEmail] = useState('')
     const [pass , setPass] = useState('')

@@ -9,10 +9,11 @@ import AllProducts from './Components/Pages/AllProducts/AllProducts';
 import Login from './Components/Authentication/Login/Login';
 import Register from './Components/Authentication/Register/Register';
 import NotFound from './Components/Pages/NotFound/NotFound';
+import AuthProvider from './Components/Context/AuthProvider/AuthProvider';
 
 function App() {
   return (
-    <div className="App">
+    <AuthProvider className="App">
       <Router>
           <Switch>
             <Route exact path="/">
@@ -35,7 +36,7 @@ function App() {
             </Route>
           </Switch>
       </Router>
-    </div>
+    </AuthProvider>
   );
 }
 

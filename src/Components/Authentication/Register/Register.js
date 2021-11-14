@@ -3,11 +3,12 @@ import './Register.css';
 import droneImg from '../../../images/prod-5.jpg';
 import Header from '../../Shared/Header/Header';
 import Footer from '../../Shared/Footer/Footer';
-import useFirebase from '../../hooks/useFirebase';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Register = () => {
-    const {registerWithEmail} = useFirebase();
+    
+    const {registerWithEmail} = useAuth();
 
     //get form value
     const [name , setName] = useState('')
