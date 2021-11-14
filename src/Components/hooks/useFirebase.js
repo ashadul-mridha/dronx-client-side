@@ -6,11 +6,13 @@ firebaseAuthInit();
 
 const useFirebase = () =>{
     const [user , setUser] = useState({});
+    const [isLoading , setIsLoading] = useState(true);
 
     const auth = getAuth();
 
     //create new user
     const registerWithEmail = (name , email , pass) => {
+        setIsLoading(true);
         createUserWithEmailAndPassword(auth , email , pass)
         .then( (result) => {
             setUser(result.user)
@@ -21,12 +23,17 @@ const useFirebase = () =>{
 
         }).catch( (error) => {
             console.log(error.message);
-        })
+        }).finally(
+            () => {
+                setIsLoading(false)
+            }
+        )
         // console.log(user);
     }
 
     //login with email
     const loginWithEmail = (email , pass) => {
+        setIsLoading(true)
         signInWithEmailAndPassword(auth , email , pass)
         .then(
             (result) => {
@@ -34,36 +41,46 @@ const useFirebase = () =>{
             }
         ).catch((error) => {
           console.log(error);
-        });
+        }).finally( () => {
+            setIsLoading(false)
+        })
     }
 
     //observer
     useEffect( () => {
+        setIsLoading(true)
         onAuthStateChanged( auth , (user) => {
             if(user){
                 setUser(user)
             }else{
                 setUser({})
             }
+            setIsLoading(false)
         })
     } , [auth])
 
 
     //logout 
     const logOut = () => {
+        setIsLoading(true)
         signOut(auth)
         .then( () => {
             setUser({})
         }).catch((error) => {
             console.log(error);
-        });
+        }).finally(
+            () => {
+                setIsLoading(false)
+            }
+        )
     }
 
     return{
         user,
         registerWithEmail,
         logOut,
-        loginWithEmail
+        loginWithEmail,
+        isLoading
     }
 
 }

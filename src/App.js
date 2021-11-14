@@ -13,30 +13,32 @@ import AuthProvider from './Components/Context/AuthProvider/AuthProvider';
 
 function App() {
   return (
-    <AuthProvider className="App">
-      <Router>
-          <Switch>
-            <Route exact path="/">
-              <Home></Home>
-            </Route>
-            <Route path="/home">
-              <Home></Home>
-            </Route>
-            <Route path="/products">
-              <AllProducts></AllProducts>
-            </Route>
-            <Route path="/login">
-              <Login></Login>
-            </Route>
-            <Route path="/register">
-              <Register></Register>
-            </Route>
-            <Route path="*">
-              <NotFound></NotFound>
-            </Route>
-          </Switch>
-      </Router>
-    </AuthProvider>
+    <div className="App">
+        <AuthProvider>
+        <Router>
+            <Switch>
+              <Route exact path="/">
+                <Home></Home>
+              </Route>
+              <Route path="/home">
+                <Home></Home>
+              </Route>
+              <Route path="/products">
+                <AllProducts></AllProducts>
+              </Route>
+              <Route path="/login">
+                <Login></Login>
+              </Route>
+              <Route path="/register">
+                <Register></Register>
+              </Route>
+              <Route path="*">
+                <NotFound></NotFound>
+              </Route>
+            </Switch>
+        </Router>
+      </AuthProvider>
+    </div>
   );
 }
 
