@@ -23,8 +23,8 @@ const Header = () => {
                 {
                     user.email ? (
                         <>
-                            <button className="btn btn-light">{user.displayName}</button>
-                            <button className="btn btn-warning me-md-2">Dashboard</button>
+                            <button className="btn btn-light">Hi {user.displayName}</button>
+                            <Nav.Link as={Link}  className="btn btn-warning me-md-2 text-white fw-bold" to="/dashboard">Dashboard</Nav.Link>
                             <button className="btn btn-danger" onClick={logOut}>Logout</button>
                         </>
                     ) : (
