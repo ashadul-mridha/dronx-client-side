@@ -11,7 +11,7 @@ const useFirebase = () =>{
     const auth = getAuth();
 
     //create new user
-    const registerWithEmail = (name , email , pass) => {
+    const registerWithEmail = (name , email , pass , location , history) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth , email , pass)
         .then( (result) => {
@@ -20,6 +20,9 @@ const useFirebase = () =>{
             updateProfile(auth.currentUser, {
                 displayName: name
             })
+
+            const redirecturl = location?.state?.from || '/';
+            history.replace(redirecturl);
 
         }).catch( (error) => {
             console.log(error.message);
@@ -32,12 +35,14 @@ const useFirebase = () =>{
     }
 
     //login with email
-    const loginWithEmail = (email , pass) => {
+    const loginWithEmail = (email , pass , location , history) => {
         setIsLoading(true)
         signInWithEmailAndPassword(auth , email , pass)
         .then(
             (result) => {
                 setUser(result.user)
+                const redirectUrl = location?.state?.from || '/';
+                history.replace(redirectUrl);
             }
         ).catch((error) => {
           console.log(error);

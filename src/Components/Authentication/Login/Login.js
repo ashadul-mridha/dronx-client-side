@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import './Login.css';
+import {
+    useHistory,
+    useLocation
+} from 'react-router-dom';
+
 import droneImg from '../../../images/prod-3.jpg';
 import Header from '../../Shared/Header/Header';
 import Footer from '../../Shared/Footer/Footer';
@@ -22,10 +27,13 @@ const Login = () => {
         setPass(value);
     }
 
+    const location = useLocation();
+    const history = useHistory();
+
     //create new user
     const handleLoginSubmit = (e) => {
         
-        loginWithEmail(email , pass)
+        loginWithEmail(email , pass , location , history)
 
         e.preventDefault();
     }

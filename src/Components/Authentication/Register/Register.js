@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import './Register.css';
+import {
+    useLocation,
+    useHistory
+} from 'react-router-dom';
+
 import droneImg from '../../../images/prod-5.jpg';
 import Header from '../../Shared/Header/Header';
 import Footer from '../../Shared/Footer/Footer';
@@ -28,9 +33,12 @@ const Register = () => {
         setPass(value);
     }
 
+    const location = useLocation();
+    const history = useHistory();
+
     //create new user
     const handleRegisterSubmit = (e) => {
-        registerWithEmail(name , email , pass)
+        registerWithEmail(name , email , pass , location , history)
 
         e.preventDefault();
     }

@@ -10,6 +10,8 @@ import Login from './Components/Authentication/Login/Login';
 import Register from './Components/Authentication/Register/Register';
 import NotFound from './Components/Pages/NotFound/NotFound';
 import AuthProvider from './Components/Context/AuthProvider/AuthProvider';
+import ProductDetails from './Components/Pages/ProductDetails/ProductDetails';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -32,6 +34,9 @@ function App() {
               <Route path="/register">
                 <Register></Register>
               </Route>
+              <PrivateRoute path="/product/details">
+                <ProductDetails></ProductDetails>
+              </PrivateRoute>
               <Route path="*">
                 <NotFound></NotFound>
               </Route>
