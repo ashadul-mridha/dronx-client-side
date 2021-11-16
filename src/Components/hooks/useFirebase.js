@@ -66,11 +66,12 @@ const useFirebase = () =>{
 
 
     //logout 
-    const logOut = () => {
+    const logOut = (history) => {
         setIsLoading(true)
         signOut(auth)
         .then( () => {
             setUser({})
+            history?.replace('/');
         }).catch((error) => {
             console.log(error);
         }).finally(

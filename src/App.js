@@ -12,7 +12,7 @@ import NotFound from './Components/Pages/NotFound/NotFound';
 import AuthProvider from './Components/Context/AuthProvider/AuthProvider';
 import ProductDetails from './Components/Pages/ProductDetails/ProductDetails';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-import Dashboard from './Components/Pages/Dashboard/Dashboard';
+import Dashboard from './Components/Pages/Dashboard/Dashboard/Dashboard';
 
 function App() {
   return (
