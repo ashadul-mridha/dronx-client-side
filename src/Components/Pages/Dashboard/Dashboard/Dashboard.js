@@ -11,8 +11,9 @@ import {
   } from "react-router-dom";
 import DashboardHome from '../DashboardHome/DashboardHome';
 import MakeAnAdmin from '../MakeAnAdmin/MakeAnAdmin';
-import AllProducts from '../../AllProducts/AllProducts';
+import AllProducts from '../Products/AllProducts/AllProducts';
 import AddProducts from '../Products/AddProducts/AddProducts';
+import MyOrder from '../MyOrder/MyOrder';
 
 const Dashboard = () => {
     const {user , logOut} = useAuth();
@@ -37,13 +38,15 @@ const Dashboard = () => {
                     <div className="row vh-100">
 
                         <div className="col-md-2 bg-danger pt-5">
-                            <NavLink className="text-decoration-none text-white" to="/home">Home</NavLink>
+                            <NavLink className="text-decoration-none text-white fs-4 my-3" to="/home">Home</NavLink>
                             <br/>
-                            <NavLink className="text-decoration-none text-white" to={`${url}`}>Dashboard</NavLink>
+                            <NavLink className="text-decoration-none text-white fs-4 my-3" to={`${url}`}>Dashboard</NavLink>
                             <br/>
-                            <NavLink className="text-decoration-none text-white" to={`${url}/products`}>Products</NavLink>
+                            <NavLink className="text-decoration-none text-white fs-4 my-3" to={`${url}/products`}>Products</NavLink>
                             <br/>
-                            <NavLink className="text-decoration-none text-white" to={`${url}/makeAnAdmin`}>Make An Admin</NavLink>
+                            <NavLink className="text-decoration-none text-white fs-4 my-3" to={`${url}/myOrder`}>My Order</NavLink>
+                            <br/>
+                            <NavLink className="text-decoration-none text-white fs-4 my-3" to={`${url}/makeAnAdmin`}>Make An Admin</NavLink>
                             
                             <hr/>
                             <h5>{user.displayName}</h5>
@@ -55,6 +58,9 @@ const Dashboard = () => {
                                 <Switch>
                                     <Route exact path={path}>
                                         <DashboardHome></DashboardHome>
+                                    </Route>
+                                    <Route path={`${path}/myOrder`}>
+                                        <MyOrder></MyOrder>
                                     </Route>
                                     <Route path={`${path}/makeAnAdmin`}>
                                         <MakeAnAdmin></MakeAnAdmin>

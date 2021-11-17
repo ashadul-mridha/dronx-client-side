@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const AddProducts = ({allProduct}) => {
     //use State of form
@@ -34,7 +35,13 @@ const AddProducts = ({allProduct}) => {
             img
         }
 
-        console.log(product);
+        //inset product to database
+        axios.post('http://localhost:5000/product',{product})
+        .then( res => {
+            if(res.status === 200){
+                alert('Product Added SuccessFully');
+            }
+        })
 
 
         e.preventDefault();
