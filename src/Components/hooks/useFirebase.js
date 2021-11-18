@@ -80,6 +80,7 @@ const useFirebase = () =>{
         signOut(auth)
         .then( () => {
             setUser({})
+            setIsAdmin(false)
             history?.replace('/');
 
         }).catch((error) => {
