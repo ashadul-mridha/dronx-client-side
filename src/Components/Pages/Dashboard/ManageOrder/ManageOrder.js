@@ -7,7 +7,7 @@ const ManageOrder = () => {
     
     const [orders , setOrders] = useState([]);
     useEffect( () => {
-        axios.get('http://localhost:5000/orders')
+        axios.get('https://immense-thicket-11021.herokuapp.com/orders')
         .then( result => {
             setOrders(result.data);
         })
@@ -17,7 +17,7 @@ const ManageOrder = () => {
      const cancelOrder = id => {
         const isCancel = window.confirm('Are You Sure Cancel Order');
         if(isCancel){
-            axios.delete(`http://localhost:5000/order/${id}`)
+            axios.delete(`https://immense-thicket-11021.herokuapp.com/order/${id}`)
             .then( res => {
                 if(res.status === 200){
                     const currentOrder = orders.filter( order => order._id !== id);

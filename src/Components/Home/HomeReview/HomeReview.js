@@ -5,7 +5,7 @@ import SingleReview from '../SingleReview/SingleReview';
 const HomeReview = () => {
     const [reviews , setReviews] = useState([]);
     useEffect( () => {
-        axios.get('http://localhost:5000/review')
+        axios.get('https://immense-thicket-11021.herokuapp.com/review')
         .then( res => {
             setReviews(res.data);
         })

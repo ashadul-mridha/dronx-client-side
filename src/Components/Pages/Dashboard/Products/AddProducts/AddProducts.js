@@ -36,7 +36,7 @@ const AddProducts = ({allProduct}) => {
         }
 
         //inset product to database
-        axios.post('http://localhost:5000/product',{product})
+        axios.post('https://immense-thicket-11021.herokuapp.com/product',{product})
         .then( res => {
             if(res.status === 200){
                 alert('Product Added SuccessFully');

@@ -8,7 +8,7 @@ const Product = ({order, cancelOrder}) => {
     const [product , setProduct] = useState({});
 
     useEffect( () => {
-        axios.get(`http://localhost:5000/product/${productId}`)
+        axios.get(`https://immense-thicket-11021.herokuapp.com/product/${productId}`)
         .then( result => {
             setProduct(result.data);
         })

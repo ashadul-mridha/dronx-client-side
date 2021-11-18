@@ -7,7 +7,7 @@ import SingleProduct from '../SingleProduct/SingleProduct';
 const ProductPage = () => {
     const [products , setProducts] = useState([]);
     useEffect( () => {
-        axios.get('http://localhost:5000/products')
+        axios.get('https://immense-thicket-11021.herokuapp.com/products')
         .then( res => {
             setProducts(res.data);
         })

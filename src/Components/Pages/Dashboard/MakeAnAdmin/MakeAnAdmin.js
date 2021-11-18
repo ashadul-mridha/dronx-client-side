@@ -12,7 +12,7 @@ const MakeAnAdmin = () => {
     function handleSubmit(e){
         
         
-        axios.put('http://localhost:5000/user',{email})
+        axios.put('https://immense-thicket-11021.herokuapp.com/user',{email})
         .then( res => {
             console.log(res);
         })

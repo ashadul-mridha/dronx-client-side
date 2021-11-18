@@ -26,7 +26,7 @@ const Review = () => {
             review
         }
         
-        axios.post('http://localhost:5000/review' , {reviewData})
+        axios.post('https://immense-thicket-11021.herokuapp.com/review' , {reviewData})
         .then( res => {
             console.log(res);
         })

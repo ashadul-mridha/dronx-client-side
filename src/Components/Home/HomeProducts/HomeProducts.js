@@ -6,13 +6,13 @@ import './HomeProducts.css';
 const HomeProducts = () => {
     const [products , setProducts] = useState([]);
     useEffect( () => {
-        axios.get('http://localhost:5000/products')
+        axios.get('https://immense-thicket-11021.herokuapp.com/products')
         .then( res => {
             setProducts(res.data)
         })
     } , [])
 
-    // console.log(products);
+    const sliceProducts = products?.slice(0,6);
 
     return (
         <div className="container my-5">
@@ -22,33 +22,13 @@ const HomeProducts = () => {
             </div>
             <div className="row g-3 my-4">
                 {
-                    products.map( product =>  {
+                    sliceProducts.map( product =>  {
                         return(
                             <SingleProduct key={product._id} product={product}></SingleProduct>
                         )
                     } )
                 }
-                {/* <div className="col-md-4 col-sm-6 col-xs-12">
-                    <div className=" d-flex flex-column align-items-center shadow-lg">
-                        <img alt="" className="img-fluid" src={pro1} />
-                        <h4 className="my-4">POWERFUL ANTENNA</h4>
-                        <p>Thanks to the high-quality omnidirectional 5.8 GHz antenna, our drones can receive the signal from almost any distance and location.</p>
-                    </div>
-                </div>
-                <div className="col-md-4 col-sm-6 col-xs-12">
-                    <div className=" d-flex flex-column align-items-center shadow-lg">
-                        <img alt="" className="img-fluid" src={pro2} />
-                        <h4 className="my-4">30-MINUTE FLIGHT TIME</h4>
-                        <p>With extended battery capacity, we guarantee long flight time that will help make great use of your favorite drone  battery capacity.</p>
-                    </div>
-                </div>
-                <div className="col-md-4 col-sm-6 col-xs-12 ">
-                    <div className="d-flex flex-column align-items-center shadow-lg">
-                        <img alt="" className="img-fluid" src={pro3} />
-                        <h4 className="my-4">FLIGHT CONTROL</h4>
-                        <p>Our new drones have an improved set of sensors that give them better control even in the most complex environment and situations.</p>
-                    </div>
-                </div> */}
+                
             </div>
         </div>
     );

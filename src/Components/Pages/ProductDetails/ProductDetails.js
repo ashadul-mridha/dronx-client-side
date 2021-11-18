@@ -16,7 +16,7 @@ const ProductDetails = () => {
     const {id} = useParams();
     const [product , setProduct] = useState({});
     useEffect( () => {
-        axios.get(`http://localhost:5000/product/${id}`)
+        axios.get(`https://immense-thicket-11021.herokuapp.com/product/${id}`)
         .then(result => {
             setProduct(result.data);
         })
@@ -48,7 +48,7 @@ const ProductDetails = () => {
             address,
             status: false,
         }
-        axios.post('http://localhost:5000/order', { order })
+        axios.post('https://immense-thicket-11021.herokuapp.com/order', { order })
         .then( res => {
             console.log(res);
         })

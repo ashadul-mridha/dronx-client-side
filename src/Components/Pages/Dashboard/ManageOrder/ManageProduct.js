@@ -9,14 +9,14 @@ const ManageProduct = ({order , cancelOrder}) => {
     const [product , setProduct] = useState({});
 
     useEffect( () => {
-        axios.get(`http://localhost:5000/product/${productId}`)
+        axios.get(`https://immense-thicket-11021.herokuapp.com/product/${productId}`)
         .then( result => {
             setProduct(result.data);
         })
     } )
 
     const orderApproval = () => {
-        axios.put('http://localhost:5000/order/status', {_id})
+        axios.put('https://immense-thicket-11021.herokuapp.com/order/status', {_id})
         .then( res => {
             console.log(res);
             if(res.status === 200){

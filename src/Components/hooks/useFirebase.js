@@ -93,7 +93,7 @@ const useFirebase = () =>{
             email,
             role: false,
         }
-        axios.post('http://localhost:5000/user',{user})
+        axios.post('https://immense-thicket-11021.herokuapp.com/user',{user})
         .then( result => {
             console.log(result)
         })
@@ -101,7 +101,7 @@ const useFirebase = () =>{
 
     //get all users and find current user
     useEffect( () => {
-        axios.get('http://localhost:5000/users')
+        axios.get('https://immense-thicket-11021.herokuapp.com/users')
         .then( res => {
             const users = res.data;
             const currentUser = users?.find( cUser => cUser.email === user.email );

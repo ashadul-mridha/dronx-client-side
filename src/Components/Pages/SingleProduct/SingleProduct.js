@@ -14,7 +14,6 @@ const SingleProduct = ({product}) => {
                     <h5 className="text-danger">${price}</h5>
                     <p>{desc.slice(0,150)}</p>
                     <Link to={`product/${_id}`} className="btn btn-danger">Buy Now</Link>
-                    {/* <button className="btn btn-danger">Buy Now</button> */}
                 </div>
             </div>
         </div>

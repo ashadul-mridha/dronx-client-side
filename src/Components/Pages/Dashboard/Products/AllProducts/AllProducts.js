@@ -9,7 +9,7 @@ const AllProducts = ({addProduct}) => {
     const [products , setProducts] = useState([]);
 
     useEffect( () => {
-        axios.get('http://localhost:5000/products')
+        axios.get('https://immense-thicket-11021.herokuapp.com/products')
         .then( res => {
             setProducts(res.data);
         })
@@ -20,7 +20,7 @@ const AllProducts = ({addProduct}) => {
         const isAggre = window.confirm('Are You Sure Delete this Product');
         
         if(isAggre){
-            axios.delete(`http://localhost:5000/product/${productId}`)
+            axios.delete(`https://immense-thicket-11021.herokuapp.com/product/${productId}`)
             .then( res => {
                 console.log(res);
                 if(res.status === 200){
