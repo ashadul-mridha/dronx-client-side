@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import SingleProduct from './SingleProduct';
 
 
 const AllProducts = ({addProduct}) => {
@@ -14,6 +15,26 @@ const AllProducts = ({addProduct}) => {
         })
     } , [])
 
+    const handleDeleteProduct = (productId) => {
+
+        const isAggre = window.confirm('Are You Sure Delete this Product');
+        
+        if(isAggre){
+            axios.delete(`http://localhost:5000/product/${productId}`)
+            .then( res => {
+                console.log(res);
+                if(res.status === 200){
+                    const currentProducts = products.filter( product =>  product._id !== productId)
+                    setProducts(currentProducts)
+                }
+            })
+        }
+        
+        
+
+    }
+
+
     return (
         <div className="row">
             <div className="col-sm-12">
@@ -23,32 +44,28 @@ const AllProducts = ({addProduct}) => {
             </div>
             <div className="col-md-12 my-2">
                 <Link to={addProduct} className="btn btn-danger text-start">Add products</Link>
-                <table className="table table-striped table-hover my-3">
-                    <thead>
-                        <tr>
-                            <th scope="col">Image</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Desc</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            products.map( product => {
-                                return(
-                                    <tr key={product._id}>
-                                        <th> <img src={product.img} className="img-fluid" alt=""/>  </th>
-                                        <td>{product.title}</td>
-                                        <td>{product.price}</td>
-                                        <td>{product.desc}</td>
-                                        <td> <button className="btn btn-sm btn-danger">Delete</button> </td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+                <div className="table-responsive">
+                    <table className="table table-striped table-hover my-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Desc</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                products.map( product => {
+                                    return(
+                                        <SingleProduct handleDeleteProduct={handleDeleteProduct}  key={product._id} product={product}></SingleProduct>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );

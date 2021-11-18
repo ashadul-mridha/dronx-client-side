@@ -20,7 +20,7 @@ const ProductDetails = () => {
         .then(result => {
             setProduct(result.data);
         })
-    } , []);
+    } , [id]);
     const {img , title , desc , price} = product;
 
     //handle buy now form
@@ -52,7 +52,7 @@ const ProductDetails = () => {
         .then( res => {
             console.log(res);
         })
-        console.log(phone , address , name , email);
+        // console.log(phone , address , name , email);
         e.preventDefault();
     }
     return (

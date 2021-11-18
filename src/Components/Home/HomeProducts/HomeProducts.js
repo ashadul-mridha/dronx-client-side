@@ -12,7 +12,7 @@ const HomeProducts = () => {
         })
     } , [])
 
-    console.log(products);
+    // console.log(products);
 
     return (
         <div className="container my-5">
@@ -24,7 +24,7 @@ const HomeProducts = () => {
                 {
                     products.map( product =>  {
                         return(
-                            <SingleProduct product={product}></SingleProduct>
+                            <SingleProduct key={product._id} product={product}></SingleProduct>
                         )
                     } )
                 }

@@ -14,9 +14,11 @@ import MakeAnAdmin from '../MakeAnAdmin/MakeAnAdmin';
 import AllProducts from '../Products/AllProducts/AllProducts';
 import AddProducts from '../Products/AddProducts/AddProducts';
 import MyOrder from '../MyOrder/MyOrder';
+import Payment from '../Payment/Payment';
+import ManageOrder from '../ManageOrder/ManageOrder';
 
 const Dashboard = () => {
-    const {user , logOut} = useAuth();
+    const {user , logOut , isAdmin} = useAuth();
     const history = useHistory();
     
     let { path, url } = useRouteMatch();
@@ -38,15 +40,28 @@ const Dashboard = () => {
                     <div className="row vh-100">
 
                         <div className="col-md-2 bg-danger pt-5">
-                            <NavLink className="text-decoration-none text-white fs-4 my-3" to="/home">Home</NavLink>
+                            <NavLink className="text-decoration-none text-white fs-5 my-3" to="/home">Home</NavLink>
                             <br/>
-                            <NavLink className="text-decoration-none text-white fs-4 my-3" to={`${url}`}>Dashboard</NavLink>
+                            <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}`}>Dashboard</NavLink>
                             <br/>
-                            <NavLink className="text-decoration-none text-white fs-4 my-3" to={`${url}/products`}>Products</NavLink>
-                            <br/>
-                            <NavLink className="text-decoration-none text-white fs-4 my-3" to={`${url}/myOrder`}>My Order</NavLink>
-                            <br/>
-                            <NavLink className="text-decoration-none text-white fs-4 my-3" to={`${url}/makeAnAdmin`}>Make An Admin</NavLink>
+                            {
+                                !isAdmin ? (
+                                    <> 
+                                    <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/myOrder`}>My Order</NavLink>
+                                    <br/>
+                                    <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/payment`}>Payment</NavLink>
+                                    <br/>
+                                    </>
+                                ) : (
+                                    <>
+                                        <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/products`}>Products</NavLink>
+                                        <br/>
+                                        <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/manageOrder`}>Manage All Order</NavLink>
+                                        <br/>
+                                        <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/makeAnAdmin`}>Make An Admin</NavLink>
+                                    </>
+                                )
+                            }
                             
                             <hr/>
                             <h5>{user.displayName}</h5>
@@ -61,6 +76,12 @@ const Dashboard = () => {
                                     </Route>
                                     <Route path={`${path}/myOrder`}>
                                         <MyOrder></MyOrder>
+                                    </Route>
+                                    <Route path={`${path}/manageOrder`}>
+                                        <ManageOrder></ManageOrder>
+                                    </Route>
+                                    <Route path={`${path}/payment`}>
+                                        <Payment></Payment>
                                     </Route>
                                     <Route path={`${path}/makeAnAdmin`}>
                                         <MakeAnAdmin></MakeAnAdmin>

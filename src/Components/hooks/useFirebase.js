@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import firebaseAuthInit from "../Authentication/Firebase/firebase.auth.init";
 import { getAuth, createUserWithEmailAndPassword , updateProfile , onAuthStateChanged ,signOut , signInWithEmailAndPassword} from "firebase/auth";
+import axios from "axios";
 
 firebaseAuthInit();
 
 const useFirebase = () =>{
     const [user , setUser] = useState({});
     const [isLoading , setIsLoading] = useState(true);
+    const [isAdmin , setIsAdmin] = useState(false);
 
     const auth = getAuth();
 
@@ -15,14 +17,18 @@ const useFirebase = () =>{
         setIsLoading(true);
         createUserWithEmailAndPassword(auth , email , pass)
         .then( (result) => {
-            setUser(result.user)
 
             updateProfile(auth.currentUser, {
                 displayName: name
             })
+            
+            setUser(result.user)
+
+            //inser mongodb
+            insetUserToDB( result.user.email );
 
             const redirecturl = location?.state?.from || '/';
-            history.replace(redirecturl);
+            history.push(redirecturl);
 
         }).catch( (error) => {
             console.log(error.message);
@@ -81,12 +87,38 @@ const useFirebase = () =>{
         )
     }
 
+    //inset register user to mongodb
+    const insetUserToDB = ( email  ) => {
+        const user ={
+            email,
+            role: false,
+        }
+        axios.post('http://localhost:5000/user',{user})
+        .then( result => {
+            console.log(result)
+        })
+    }
+
+    //get all users and find current user
+    useEffect( () => {
+        axios.get('http://localhost:5000/users')
+        .then( res => {
+            const users = res.data;
+            const currentUser = users?.find( cUser => cUser.email === user.email );
+            if(currentUser?.role){
+                setIsAdmin(true);
+            }
+
+        })
+    } ,[user])
+
     return{
         user,
         registerWithEmail,
         logOut,
         loginWithEmail,
-        isLoading
+        isLoading,
+        isAdmin
     }
 
 }

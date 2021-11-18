@@ -1,20 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-const Product = ({order}) => {
+const Product = ({order, cancelOrder}) => {
 
     const { _id , address , productId ,  phone , status} = order ;
 
-    console.log(order);
-    const [product , setProduct] = useState([]);
+    const [product , setProduct] = useState({});
 
     useEffect( () => {
         axios.get(`http://localhost:5000/product/${productId}`)
         .then( result => {
             setProduct(result.data);
-            console.log(result.data);
         })
-    } ,[])
+    } ,[productId])
+
+    
     
     return (
         <tr key={_id}>
@@ -26,13 +26,13 @@ const Product = ({order}) => {
             <td>
                 {
                     status ? (
-                        <button className="btn btn-sm btn-success">Shipped</button>
+                        <div className="btn btn-sm btn-success">Shipped</div>
                     ) : (
-                        <button className="btn btn-sm btn-danger">Pending</button>
+                        <div className="btn btn-sm btn-danger">Pending</div>
                     )
                 }
             </td>
-            <td> <button className="btn btn-danger">Delete</button> </td>
+            <td> <button onClick={ () => cancelOrder(_id)} className="btn btn-danger">Cancel</button> </td>
         </tr>
     );
 };
