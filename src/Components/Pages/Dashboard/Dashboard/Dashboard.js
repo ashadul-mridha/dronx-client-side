@@ -16,6 +16,7 @@ import AddProducts from '../Products/AddProducts/AddProducts';
 import MyOrder from '../MyOrder/MyOrder';
 import Payment from '../Payment/Payment';
 import ManageOrder from '../ManageOrder/ManageOrder';
+import Review from '../Review/Review';
 
 const Dashboard = () => {
     const {user , logOut , isAdmin} = useAuth();
@@ -51,6 +52,8 @@ const Dashboard = () => {
                                     <br/>
                                     <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/payment`}>Payment</NavLink>
                                     <br/>
+                                    <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/review`}>Review</NavLink>
+                                    <br/>
                                     </>
                                 ) : (
                                     <>
@@ -76,6 +79,9 @@ const Dashboard = () => {
                                     </Route>
                                     <Route path={`${path}/myOrder`}>
                                         <MyOrder></MyOrder>
+                                    </Route>
+                                    <Route path={`${path}/review`}>
+                                        <Review></Review>
                                     </Route>
                                     <Route path={`${path}/manageOrder`}>
                                         <ManageOrder></ManageOrder>
