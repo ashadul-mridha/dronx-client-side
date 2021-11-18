@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MakeAnAdmin = () => {
     const [email , setEmail] = useState('');
@@ -14,7 +16,18 @@ const MakeAnAdmin = () => {
         
         axios.put('https://immense-thicket-11021.herokuapp.com/user',{email})
         .then( res => {
-            console.log(res);
+            if(res.status === 200){
+                //notification
+                toast.warn(`${email} this email Make Admin`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
         })
         e.preventDefault();
     }
@@ -31,6 +44,18 @@ const MakeAnAdmin = () => {
                     <button type="submit" className="btn btn-danger">Make Admin</button>
                 </form>
             </div>
+            
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };

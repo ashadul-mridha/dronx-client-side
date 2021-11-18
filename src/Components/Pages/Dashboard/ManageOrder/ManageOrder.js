@@ -2,9 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ManageProduct from './ManageProduct';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const ManageOrder = () => {
 
-    
     const [orders , setOrders] = useState([]);
     useEffect( () => {
         axios.get('https://immense-thicket-11021.herokuapp.com/orders')
@@ -22,6 +24,17 @@ const ManageOrder = () => {
                 if(res.status === 200){
                     const currentOrder = orders.filter( order => order._id !== id);
                     setOrders(currentOrder);
+                    
+                    //notification
+                    toast.success('order Cancel Successfull!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
                 }
             })
         }
@@ -60,6 +73,18 @@ const ManageOrder = () => {
                     </table>
                 </div>
             </div>
+            
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };

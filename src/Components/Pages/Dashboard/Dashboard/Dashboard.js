@@ -49,20 +49,23 @@ const Dashboard = () => {
                             {
                                 !isAdmin ? (
                                     <> 
-                                    <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/myOrder`}>My Order</NavLink>
+                                    <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/payment`}>Pay</NavLink>
                                     <br/>
-                                    <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/payment`}>Payment</NavLink>
+                                    <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/myOrder`}>My Order</NavLink>
                                     <br/>
                                     <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/review`}>Review</NavLink>
                                     <br/>
                                     </>
                                 ) : (
                                     <>
-                                        <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/products`}>Products</NavLink>
-                                        <br/>
                                         <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/manageOrder`}>Manage All Order</NavLink>
                                         <br/>
+                                        <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/AddProduct`}>Add A Product</NavLink>
+                                        <br/>
+                                        <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/products`}>Manage Products</NavLink>
+                                        <br/>
                                         <NavLink className="text-decoration-none text-white fs-5 my-3" to={`${url}/makeAnAdmin`}>Make An Admin</NavLink>
+                                       
                                     </>
                                 )
                             }

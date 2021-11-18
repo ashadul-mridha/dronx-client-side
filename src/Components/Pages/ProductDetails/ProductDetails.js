@@ -5,7 +5,15 @@ import useAuth from '../../hooks/useAuth';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
 
+//toast
+import { toast , ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const ProductDetails = () => {
+
+
+    
+
     const {user} = useAuth();
 
     const [email , setEmail] = useState(user.email);
@@ -50,14 +58,41 @@ const ProductDetails = () => {
         }
         axios.post('https://immense-thicket-11021.herokuapp.com/order', { order })
         .then( res => {
-            console.log(res);
+            if(res.status === 200){
+                toast.success('Your Order SuccessFull!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
         })
-        // console.log(phone , address , name , email);
         e.preventDefault();
     }
     return (
         <>
             <Header></Header>
+            
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+            
+            {/* <div>
+                <button className="btn btn-info" onClick={notify}>Notify!</button>
+                <ToastContainer />
+            </div> */}
+
             <div className="container my-4">
                 <div className="row">
                     <div className="col-md-6 col-sm-12">

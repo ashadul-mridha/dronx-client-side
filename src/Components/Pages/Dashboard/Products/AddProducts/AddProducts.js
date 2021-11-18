@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const AddProducts = ({allProduct}) => {
     //use State of form
     const [title , setTitle] = useState('');
@@ -39,7 +43,16 @@ const AddProducts = ({allProduct}) => {
         axios.post('https://immense-thicket-11021.herokuapp.com/product',{product})
         .then( res => {
             if(res.status === 200){
-                alert('Product Added SuccessFully');
+                
+                toast.success('Product Added Successfull!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }
         })
 
@@ -77,6 +90,17 @@ const AddProducts = ({allProduct}) => {
                     <button type="submit" className="btn btn-danger">Add Product</button>
                 </form>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };

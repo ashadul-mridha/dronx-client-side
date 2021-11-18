@@ -18,7 +18,7 @@ const ProductPage = () => {
             <div className="container my-4">
                 <div className="row">
                     {
-                        products.map( product => <SingleProduct product={product}></SingleProduct>)
+                        products.map( product => <SingleProduct key={product._id} product={product}></SingleProduct>)
                     }
                 </div>
             </div>

@@ -2,6 +2,9 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Review = () => {
     const {user} = useAuth();
 
@@ -28,7 +31,17 @@ const Review = () => {
         
         axios.post('https://immense-thicket-11021.herokuapp.com/review' , {reviewData})
         .then( res => {
-            console.log(res);
+            if(res.status === 200){
+                toast.success('Thanks For Your Review', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
         })
 
         e.preventDefault();
@@ -45,13 +58,24 @@ const Review = () => {
                     <br/>
                     <input className="form-control" type="text" value={user.displayName} disabled/>
                     <br/>
-                    <input onBlur={handleRating} className="form-control" type="text" placeholder="Enter Rating out of (0-5)" />
+                    <input onBlur={handleRating} className="form-control" type="text" placeholder="Enter Rating (a number between 0-5)" />
                     <br/>
                     <input onBlur={handleReview} className="form-control py-3" type="text" placeholder="Your Review" />
                     <br/>
                     <button className="btn btn-danger" type="submit">Add Review</button>
                 </form>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };

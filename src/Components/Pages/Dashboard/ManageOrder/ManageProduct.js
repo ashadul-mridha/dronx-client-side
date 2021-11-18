@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const ManageProduct = ({order , cancelOrder}) => {
 
     const { _id , address , productId , name,   phone , status} = order ;
@@ -21,6 +24,17 @@ const ManageProduct = ({order , cancelOrder}) => {
             console.log(res);
             if(res.status === 200){
                 window.location.reload();
+                
+                //notification
+                toast.info('order Shipped Successfull!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }
         })
     }
@@ -46,6 +60,18 @@ const ManageProduct = ({order , cancelOrder}) => {
                 }
             </td>
             <td> <button onClick={ () => cancelOrder(_id)}  className="btn btn-danger">Cancel</button> </td>
+            
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </tr>
     );
 };

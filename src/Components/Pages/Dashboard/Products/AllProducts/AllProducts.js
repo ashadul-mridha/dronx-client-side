@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SingleProduct from './SingleProduct';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const AllProducts = ({addProduct}) => {
 
@@ -25,7 +28,17 @@ const AllProducts = ({addProduct}) => {
                 console.log(res);
                 if(res.status === 200){
                     const currentProducts = products.filter( product =>  product._id !== productId)
-                    setProducts(currentProducts)
+                    setProducts(currentProducts);
+                    //notification
+                    toast.success('Product Deleted!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
                 }
             })
         }
@@ -67,6 +80,18 @@ const AllProducts = ({addProduct}) => {
                     </table>
                 </div>
             </div>
+            
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };

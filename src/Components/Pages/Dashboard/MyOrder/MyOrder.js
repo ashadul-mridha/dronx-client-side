@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 import Product from './Product/Product';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const MyOrder = () => {
     const {user} = useAuth();
 
@@ -27,6 +30,15 @@ const MyOrder = () => {
                 if(res.status === 200){
                     const currentOrder = myOrder.filter( order => order._id !== id);
                     setOrders(currentOrder);
+                    toast.success('Order Cancel SuccessFull!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
                 }
             })
         }
@@ -63,6 +75,17 @@ const MyOrder = () => {
                     </table>
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };

@@ -3,6 +3,7 @@ import firebaseAuthInit from "../Authentication/Firebase/firebase.auth.init";
 import { getAuth, createUserWithEmailAndPassword , updateProfile , onAuthStateChanged ,signOut , signInWithEmailAndPassword} from "firebase/auth";
 import axios from "axios";
 
+
 firebaseAuthInit();
 
 const useFirebase = () =>{
@@ -30,6 +31,7 @@ const useFirebase = () =>{
             const redirecturl = location?.state?.from || '/';
             history.push(redirecturl);
 
+
         }).catch( (error) => {
             console.log(error.message);
         }).finally(
@@ -49,6 +51,7 @@ const useFirebase = () =>{
                 setUser(result.user)
                 const redirectUrl = location?.state?.from || '/';
                 history.replace(redirectUrl);
+
             }
         ).catch((error) => {
           console.log(error);
@@ -78,6 +81,7 @@ const useFirebase = () =>{
         .then( () => {
             setUser({})
             history?.replace('/');
+
         }).catch((error) => {
             console.log(error);
         }).finally(
